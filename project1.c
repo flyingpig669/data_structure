@@ -74,6 +74,22 @@ int main(){
     return 0;
 }
 
+
+double* readFile(const char *filename,const int N ){
+    FILE *file = fopen(filename,"r");
+    if (file == NULL){
+        printf("无法打开文件 %s \n",filename);
+        return NULL;
+    }
+    double array[N] = malloc(N * sizeof(double));
+    double value;int i=0;
+    while(i<N && fscanf(file,"%lf",&value)==1){
+        array[i++] = value;
+    }
+    fclose(file);
+    return array;
+}
+
 float find_min_in_file(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
